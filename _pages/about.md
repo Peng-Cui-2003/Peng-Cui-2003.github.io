@@ -28,6 +28,18 @@ My research interest includes neural machine translation and computer vision. I 
 
 # 📝 Publications 
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICML 2026</div><img src='images/500x300.png' alt="Bayesian Gated Non-Negative Contrastive Learning" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+Bayesian Gated Non-Negative Contrastive Learning
+
+**Peng Cui**\*, Jiahao Zhang\*, Lijie Hu
+
+**ICML 2026**  
+\* Equal contribution.
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
