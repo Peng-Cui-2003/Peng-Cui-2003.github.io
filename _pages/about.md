@@ -21,7 +21,7 @@ I am currently a master's student at The Hong Kong University of Science and Tec
 
 
 # 🔥 News
-- *2026.06*: &nbsp;Our paper, 贝叶斯门控非负对比学习, has been accepted by ICML 2026. Thanks to all collaborators.
+- *2026.05*: &nbsp;Our paper, Bayesian Gated Non-Negative Contrastive Learning, has been accepted by ICML 2026. Thanks to all collaborators.
 
 # 📝 Publications 
 

@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Lorem ipsum"
-description              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. "
+title                    : "Peng Cui"
+description              : "LLM"
 url                      : "https://Peng-Cui-2003.github.io"
 baseurl                  : ""
 repository               : "Peng-Cui-2003/Peng-Cui-2003.github.io"
@@ -23,14 +23,14 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 
 # Site Author
 author:
-  name             : "Lorem ipsum"
+  name             : "Peng Cui"
   avatar           : "images/头像.jpg"
-  bio              : "Lorem ipsum College"
+  bio              : "LLM"
   location         : "Beijing, China"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=sNfVeZ4AAAAJ"
-  email            : "Lorem@ipsum.com"
+  email            : "cuip624@gmail.com"
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
