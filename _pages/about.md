@@ -32,19 +32,14 @@ Bayesian Gated Non-Negative Contrastive Learning
 
 **Peng Cui**\*, Jiahao Zhang\*, Lijie Hu
 
-**ICML 2026**  
-\* Equal contribution.
+**ICML 2026**
 </div>
 </div>
-
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
 
 # 🎖 Honors and Awards
 
 # 📖 Educations
 - *2025.09 - 2026.10*, M.S., The Hong Kong University of Science and Technology (HKUST).
 - *2021.09 - 2025.06*, B.S., Data Science and Big Data Technology, Southern University of Science and Technology (SUSTech).
-
-# 💬 Invited Talks
 
 # 💻 Internships
