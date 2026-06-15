@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master's student at The Hong Kong University of Science and Technology (HKUST). I received my bachelor's degree in Data Science and Big Data Technology from Southern University of Science and Technology (SUSTech).
+I am currently a master's student in Artificial Intelligence at The Hong Kong University of Science and Technology (HKUST). I received my bachelor's degree in Data Science and Big Data Technology from Southern University of Science and Technology (SUSTech). I am actively seeking Ph.D. opportunities for Fall 2027.
 
 
 # 🔥 News
@@ -39,7 +39,7 @@ Bayesian Gated Non-Negative Contrastive Learning
 # 🎖 Honors and Awards
 
 # 📖 Educations
-- *2025.09 - 2026.10*, M.S., The Hong Kong University of Science and Technology (HKUST).
+- *2025.09 - 2026.10*, M.S., Artificial Intelligence, The Hong Kong University of Science and Technology (HKUST).
 - *2021.09 - 2025.06*, B.S., Data Science and Big Data Technology, Southern University of Science and Technology (SUSTech).
 
 # 💻 Internships
