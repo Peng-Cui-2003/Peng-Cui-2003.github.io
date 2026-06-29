@@ -43,3 +43,16 @@ Bayesian Gated Non-Negative Contrastive Learning
 - *2021.09 - 2025.06*, B.S., Data Science and Big Data Technology, Southern University of Science and Technology (SUSTech).
 
 # 💻 Internships
+
+# Projects
+
+<div class='paper-box'><div class='paper-box-image'><div><img src='images/projects/difffake/ferretnet-overview.png' alt="DiffFake project overview" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection](/projects/difffake/)
+
+**Contributors:** Peng Cui, Le Peng, Yixin Xu, Jing Li
+
+Built on FerretNet, this project studies Local Pixel Dependency statistics and Mahalanobis distance for selecting difficult real/fake samples in AI-generated image detection.
+</div>
+</div>
