@@ -49,7 +49,7 @@ Bayesian Gated Non-Negative Contrastive Learning
 <div class='paper-box project-box'><div class='paper-box-image'><div class='project-placeholder' aria-label="Project image placeholder"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection](/projects/difffake/)
+[DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection](/files/projects/difffake/report.pdf)
 
 **Contributors:** Peng Cui
 
