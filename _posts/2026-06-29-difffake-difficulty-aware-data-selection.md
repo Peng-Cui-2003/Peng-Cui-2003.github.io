@@ -4,7 +4,6 @@ date: 2026-06-29
 excerpt: "A project note on using Local Pixel Dependency statistics and Mahalanobis distance to identify hard real and fake samples for synthetic image detection."
 permalink: /projects/difffake/
 author_profile: false
-image: /images/projects/difffake/ferretnet-overview.png
 project_year: 2025
 project_type: "Computer Vision"
 tags:
@@ -14,76 +13,105 @@ tags:
   - LPD
 ---
 
-<section class="blog-hero">
-  <p class="blog-eyebrow">Project Blog / Computer Vision</p>
-  <h1>DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection</h1>
-  <p>
-    Using Local Pixel Dependency statistics and Mahalanobis distance to identify hard real and fake samples for synthetic image detection.
-  </p>
-  <div class="blog-actions">
-    <a href="https://github.com/Peng-Cui-2003/DiffFake">GitHub</a>
-    <a href="/files/projects/difffake/report.pdf">Report PDF</a>
-    <a href="/#-projects">All Projects</a>
-  </div>
-</section>
+<article class="project-detail">
+  <header class="project-detail__header">
+    <h1>DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection</h1>
+    <p class="project-detail__authors">Peng Cui</p>
+    <p class="project-detail__venue">HKUST AI-Generated Image Detection Project, 2025</p>
+    <nav class="project-detail__links" aria-label="Project links">
+      <a href="https://github.com/Peng-Cui-2003/DiffFake">GitHub</a>
+      <a href="/files/projects/difffake/report.pdf">Report PDF</a>
+      <a href="/#-projects">Projects</a>
+    </nav>
+  </header>
 
-<figure class="blog-feature">
-  <img src="/images/projects/difffake/ferretnet-overview.png" alt="FerretNet overview">
-</figure>
+  <section>
+    <h2>One-liner summary</h2>
+    <p class="project-detail__lead">
+      Local Pixel Dependency statistics can be used to identify hard real and fake samples for training AI-generated image detectors.
+    </p>
+  </section>
 
-AI-generated images are becoming increasingly realistic, which makes synthetic image detection less a question of whether a model can find obvious artifacts and more a question of whether it can still generalize when the artifacts are subtle. In this project, we revisited **FerretNet**, a lightweight detector built around Local Pixel Dependency (LPD) feature maps, and explored a difficulty-aware data selection strategy for deep fake image detection.
+  <section>
+    <h2>Motivation</h2>
+    <p>
+      AI-generated images are becoming increasingly realistic, so synthetic image detection is no longer only about finding obvious visual artifacts. A detector also needs to learn from samples where the difference between real and fake images is subtle.
+    </p>
+    <p>
+      This project revisits FerretNet and asks a more diagnostic question: if Local Pixel Dependency (LPD) feature maps expose synthetic artifacts, can we describe that effect with simple statistics and use it to select more informative training samples?
+    </p>
+  </section>
 
-The project repository is available at [Peng-Cui-2003/DiffFake](https://github.com/Peng-Cui-2003/DiffFake). The full presentation report is also available here: [Report PDF](/files/projects/difffake/report.pdf).
+  <section>
+    <h2>Method</h2>
+    <p>
+      For each image, I compute an LPD map by subtracting a local-neighborhood reconstruction from the original image. I then extract 21 statistical features from the LPD map and evaluate their real/fake discriminative power with Cohen's d, Mann-Whitney U tests, and logistic regression.
+    </p>
+    <p>
+      The final difficulty score uses 8 selected LPD-derived features:
+    </p>
+    <p class="feature-list">
+      <span>glcm_contrast</span>
+      <span>dct_low_freq_ratio</span>
+      <span>min</span>
+      <span>max</span>
+      <span>energy_top20_ratio</span>
+      <span>autocorr</span>
+      <span>grad_std</span>
+      <span>loc_var_std</span>
+    </p>
+    <p>
+      Using only real images, I estimate the mean vector and covariance matrix of these features. Each sample is scored by its Mahalanobis distance to the real-image feature distribution:
+    </p>
+    <p class="project-formula">
+      D(x) = sqrt((x - mu_real)^T Sigma_real^-1 (x - mu_real))
+    </p>
+    <p>
+      Hard real samples are real images with large distance from the real-image distribution. Hard fake samples are fake images with small distance from that distribution. The selected training subset contains the hardest samples under this definition.
+    </p>
+  </section>
 
-## Motivation
+  <section>
+    <h2>Results</h2>
+    <p>
+      I compared difficulty-aware 20% sampling with random 20% sampling and CLIP-diversity 20% sampling. The difficulty-selected subset was close to full-data training on the in-domain benchmark and clearly stronger than the two subset baselines.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Full data</th>
+          <th>Random 20%</th>
+          <th>Diversity 20%</th>
+          <th>Difficulty 20%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ForenSynth mean</td>
+          <td>95.8 ACC / 99.1 AP</td>
+          <td>88.4 ACC / 93.0 AP</td>
+          <td>90.6 ACC / 95.4 AP</td>
+          <td><strong>95.4 ACC / 98.9 AP</strong></td>
+        </tr>
+        <tr>
+          <td>Diffusion-6 mean</td>
+          <td>96.3 ACC / 99.0 AP</td>
+          <td>83.1 ACC / 93.9 AP</td>
+          <td>79.5 ACC / 90.0 AP</td>
+          <td><strong>90.4 ACC / 98.1 AP</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-FerretNet shows that LPD feature maps expose local artifacts more effectively than raw images. The original ablation results are strong, but they leave a follow-up question: if LPD really reveals synthetic artifacts, can we describe that effect statistically rather than only through end-to-end detector accuracy?
-
-Our working assumption was:
-
-> If LPD feature maps expose more artifacts, then simple statistical measurements computed on LPD maps should separate real and fake images better than the same measurements computed on original images.
-
-This led us to a second question: can these statistical measurements also tell us which samples are difficult for a detector?
-
-## Method
-
-For each image, we compute an LPD map by subtracting a local-neighborhood reconstruction from the original image. We then extract 21 statistical features from the LPD map, covering basic statistics, spatial patterns, distribution shape, frequency-domain behavior, texture, and energy concentration.
-
-We evaluated the features with Cohen's d, Mann-Whitney U tests, and logistic regression, then selected 8 indicators that were most useful for real/fake separation:
-
-`glcm_contrast`, `dct_low_freq_ratio`, `min`, `max`, `energy_top20_ratio`, `autocorr`, `grad_std`, `loc_var_std`
-
-Using only real images, we fit the mean vector and covariance matrix of these 8 LPD-derived features. Each sample is then scored by its Mahalanobis distance to the real-image feature distribution:
-
-$$
-D(x) = \sqrt{(x - \mu_{real})^T \Sigma_{real}^{-1}(x - \mu_{real})}
-$$
-
-This gives a simple definition of sample difficulty:
-
-- **Hard real samples**: real images with large distance from the real-image distribution, because they look unusually fake-like.
-- **Hard fake samples**: fake images with small distance from the real-image distribution, because they look unusually real-like.
-
-We used this score to select the hardest 20% of samples and compared it with random sampling and CLIP-embedding diversity sampling.
-
-## Results
-
-On the ForenSynth test set, training with only the difficulty-selected 20% subset reached **95.4 ACC / 98.9 AP** on average, which was close to the full-data result of **95.8 ACC / 99.1 AP**. It also clearly outperformed random 20% sampling and diversity-based 20% sampling.
-
-![ForenSynth results](/images/projects/difffake/results-forensynths.png)
-
-On Diffusion-6-class, the out-of-domain setting was harder, but the difficulty-selected subset still performed substantially better than the two 20% baselines: **90.4 ACC / 98.1 AP**, compared with **83.1 ACC / 93.9 AP** for random sampling and **79.5 ACC / 90.0 AP** for diversity sampling.
-
-![Diffusion results](/images/projects/difffake/results-diffusion.png)
-
-These results suggest that the LPD-based difficulty metric is not just a descriptive statistic. It captures useful training signal: a small subset of difficult samples can retain much of the full-data performance in-domain and improve over simple subset selection strategies out-of-domain.
-
-## Takeaways
-
-This project made three main contributions:
-
-- We ran fairer ablations with parameter-controlled model comparisons, showing that FerretNet's advantage is not only a model-size artifact.
-- We analyzed LPD from a statistical perspective and found that LPD-derived features distinguish real and fake images more effectively than raw-image features.
-- We used those features to define sample difficulty and built a data selection strategy around it.
-
-The main limitation is that the method was tested on a limited set of training data. It is also more reliable in-domain than out-of-domain, so future work should evaluate the score across more datasets and generative model families.
+  <section>
+    <h2>Takeaways</h2>
+    <p>
+      The main result is that LPD-derived statistics are not only useful for explaining real/fake separation; they also provide a practical signal for selecting difficult training samples. A small subset selected by this score can preserve much of the full-data performance in-domain and outperform random or diversity-based subset selection out-of-domain.
+    </p>
+    <p>
+      The current limitation is that the method was tested on a limited set of training data. A stronger follow-up would evaluate whether the same difficulty score transfers across more datasets and generative model families.
+    </p>
+  </section>
+</article>

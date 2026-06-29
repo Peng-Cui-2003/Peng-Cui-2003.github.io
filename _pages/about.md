@@ -46,12 +46,12 @@ Bayesian Gated Non-Negative Contrastive Learning
 
 # Projects
 
-<div class='paper-box'><div class='paper-box-image'><div><img src='images/projects/difffake/ferretnet-overview.png' alt="DiffFake project overview" width="100%"></div></div>
+<div class='paper-box project-box'><div class='paper-box-image'><div class='project-placeholder' aria-label="Project image placeholder"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [DiffFake: Difficulty-Aware Data Selection for AI-Generated Image Detection](/projects/difffake/)
 
-**Contributors:** Peng Cui, Le Peng, Yixin Xu, Jing Li
+**Contributors:** Peng Cui
 
 Built on FerretNet, this project studies Local Pixel Dependency statistics and Mahalanobis distance for selecting difficult real/fake samples in AI-generated image detection.
 </div>
