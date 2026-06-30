@@ -44,6 +44,8 @@ Bayesian Gated Non-Negative Contrastive Learning
 
 # 💻 Internships
 
+<span class='anchor' id='-projects'></span>
+
 # Projects
 
 <div class='paper-box project-box'><div class='paper-box-image'><div class='project-placeholder' aria-label="Project image placeholder"></div></div>
