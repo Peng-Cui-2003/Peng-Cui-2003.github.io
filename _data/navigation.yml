@@ -19,7 +19,7 @@ main:
     url: "/#-internships"
 
   - title: "Projects"
-    url: "/#-projects"
+    url: "/#projects"
 
   - title: "CV"
     url: "/files/CV.pdf"
